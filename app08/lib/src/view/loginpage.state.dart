@@ -1,3 +1,4 @@
+import 'package:app08/src/view/homepage.state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -47,7 +48,13 @@ class LoginPageState extends State {
               ),
               SizedBox(height: 30),
               ElevatedButton(onPressed: () {
-                print('Email: $email, Password: $password');
+                if(email == 'admin@admin.com' && password == 'admin') {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => HomePageState())
+                  );
+                } else {
+                  print('you isnt admin ');
+                }
               }, child: Text('Login', textDirection: TextDirection.ltr,),style: ElevatedButton.styleFrom(
                 primary: Colors.deepPurple,
                 onPrimary: Colors.deepPurple[400]
