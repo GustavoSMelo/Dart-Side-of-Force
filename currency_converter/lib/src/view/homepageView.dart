@@ -64,9 +64,11 @@ class HomePage extends State {
                             color: Colors.orange[600],
                           ),
                           onChanged: (value) {
+                            print('first dropdown: $value');
                             setState(() {
                               model.setCurrentCurrency(value);
                             });
+                            print(model.getCurrentCurrency());
                           },
                           value: model.getCurrentCurrency(),
                           style: TextStyle(
@@ -97,6 +99,11 @@ class HomePage extends State {
                           style: TextStyle(
                             color: Colors.white
                           ),
+                          onChanged: (value) {
+                            print('txt field 1: $value');
+                            model.setCurrentCurrencyPrice(double.parse(value));
+                            print(model.getCurrentCurrencyPrice().toString());
+                          },
                         ),
                       )
                     ) 
@@ -122,6 +129,7 @@ class HomePage extends State {
                           color: Colors.orange[600]
                         ),
                         onChanged: (value) {
+                          print('dropdown 2: $value');
                           setState(() {
                             model.setConverterCurrency(value);
                           });
@@ -173,6 +181,8 @@ class HomePage extends State {
                 setState(() {
                   model.setConverterCurrencyPrice(result);
                 });
+
+                print(result);
               }, 
               child: Text('Calcular'), 
               style: ElevatedButton.styleFrom(
