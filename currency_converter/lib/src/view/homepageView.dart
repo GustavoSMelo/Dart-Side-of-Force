@@ -1,3 +1,4 @@
+import 'package:currency_converter/src/controller/homepageController.dart';
 import 'package:currency_converter/src/model/homepageModel.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,6 @@ class HomePage extends State {
 
   var model = new HomePageModel('Real', 'Dolar', 0.0, 0.0);
   List listCurrency = ['Dolar', 'Euro', 'Real'];
-  var dropDownCurrencyValue = 'Real';
-  var dropDownConvertedValue = 'Dolar'; 
 
   @override
   Widget build (BuildContext ctx) {
@@ -46,6 +45,9 @@ class HomePage extends State {
                 child: Image.asset('assets/img/calculadora_dolar.png'),
               ),
               SizedBox(
+                height: 50
+              ),
+              SizedBox(
                 child: Row (
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
@@ -63,10 +65,10 @@ class HomePage extends State {
                           ),
                           onChanged: (value) {
                             setState(() {
-                              dropDownCurrencyValue = value;
+                              model.setCurrentCurrency(value);
                             });
                           },
-                          value: dropDownCurrencyValue,
+                          value: model.getCurrentCurrency(),
                           style: TextStyle(
                             color: Colors.orange[600]
                           ),
@@ -103,28 +105,80 @@ class HomePage extends State {
               ),
               Row (
                 children: [
-                  DropdownButton(items: listCurrency.map((items) => 
-                    DropdownMenuItem(child: Text(items), value: items)).toList(),
-                    value: dropDownConvertedValue,
-                    underline: Container(
-                      height: 2,
-                      color: Colors.orange[600],
-                    ), 
-                    style: TextStyle(
-                      color: Colors.orange[600]
+                  Padding (
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15
                     ),
-                    onChanged: (value) {
-                      setState() {
-                        dropDownConvertedValue = value;
-                      }
-                    },
+                    child: Expanded(
+                      flex: 1,
+                      child: DropdownButton(items: listCurrency.map((items) => 
+                        DropdownMenuItem(child: Text(items), value: items)).toList(),
+                        value: model.getConverterCurrency(),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.orange[600],
+                        ), 
+                        style: TextStyle(
+                          color: Colors.orange[600]
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            model.setConverterCurrency(value);
+                          });
+                        },
+                      ),
+                    ),
                   ),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    readOnly: true,
+                  Expanded(
+                    flex: 3,
+                    child: Padding (
+                      padding: EdgeInsets.only(
+                        bottom: 30
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.orange[600]
+                            ) 
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.orange[600]
+                            )
+                          ),
+                          labelText: model.getConverterCurrencyPrice().toString(),
+                          labelStyle: TextStyle(
+                            color: Colors.orange[600]
+                          )
+                        ),
+                        style: TextStyle(
+                          color: Colors.orange[600]
+                        ),
+                      ),
+                    ) ,
                   )
                 ],
-              )
+              ),
+              ElevatedButton(onPressed: () {
+                var controller = HomePageController();
+                
+                var result = controller.convert(
+                model.getCurrentCurrency(),
+                model.getConverterCurrency(), 
+                model.getCurrentCurrencyPrice());
+
+                setState(() {
+                  model.setConverterCurrencyPrice(result);
+                });
+              }, 
+              child: Text('Calcular'), 
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange[600],
+                onPrimary: Colors.orange[200]
+              ))
             ],
           ),
         ),
