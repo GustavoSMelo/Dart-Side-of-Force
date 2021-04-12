@@ -8,6 +8,8 @@ class HomePageController {
         return currentCurrencyPrice * 5.7;
       } else if (converterCurrency == 'Euro') {
         return currentCurrencyPrice * 6.8;
+      } else {
+        return currentCurrencyPrice;
       }
 
     } else if (currentCurrency == 'Dolar') {
@@ -16,6 +18,8 @@ class HomePageController {
         return currentCurrencyPrice * 5.7;
       } else if (converterCurrency == 'Euro') {
         return currentCurrencyPrice * 0.84;
+      } else {
+        return currentCurrencyPrice;
       }
 
     } else {
@@ -23,10 +27,10 @@ class HomePageController {
         return currentCurrencyPrice * 5.8;
       } else if (converterCurrency == 'Dolar') {
         return currentCurrencyPrice * 1.16;
+      } else {
+        return currentCurrencyPrice;
       }
     }
-
-    return currentCurrencyPrice;
   }
 
 }
