@@ -19,7 +19,28 @@ class HomePageModel {
   }
 
   // getters
-  dynamic getCurrentCurrency () => this.currentCurrency;
+  getCurrentCurrency () => this.currentCurrency;
 
-  dynamic getConverterCurrency () => this.converterCurrency;
+  getConverterCurrency () => this.converterCurrency;
+
+  getCurrentCurrencyPrice () => this.currentCurrencyPrice;
+
+  getConverterCurrencyPrice () => this.converterCurrencyPrice;
+
+  // setters
+  void setCurrentCurrency (double currentCurrencyPrice) {
+    this.currentCurrencyPrice = currentCurrencyPrice;
+  }  
+
+  void setConverterCurrency (double converterCurrencyPrice) {
+    this.converterCurrencyPrice = converterCurrencyPrice;
+  }
+
+  void setCurrentCurrencyPrice (double currentCurrencyPrice) {
+    this.currentCurrencyPrice = currentCurrencyPrice;
+  }
+
+  void setConverterCurrencyPrice (double converterCurrencyPrice) {
+    this.converterCurrencyPrice = converterCurrencyPrice;
+  }
 }
