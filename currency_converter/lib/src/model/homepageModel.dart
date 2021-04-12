@@ -28,12 +28,12 @@ class HomePageModel {
   getConverterCurrencyPrice () => this.converterCurrencyPrice;
 
   // setters
-  void setCurrentCurrency (double currentCurrencyPrice) {
-    this.currentCurrencyPrice = currentCurrencyPrice;
+  void setCurrentCurrency (String currentCurrency) {
+    this.currentCurrency = currentCurrency;
   }  
 
-  void setConverterCurrency (double converterCurrencyPrice) {
-    this.converterCurrencyPrice = converterCurrencyPrice;
+  void setConverterCurrency (String converterCurrency) {
+    this.converterCurrency = converterCurrency;
   }
 
   void setCurrentCurrencyPrice (double currentCurrencyPrice) {
